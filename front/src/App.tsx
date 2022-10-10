@@ -1,12 +1,12 @@
-import { Body } from "./components/body";
 import { Header } from "./components/Header";
+import { Search } from "./components/Search";
 import { Globalstyle } from "./style/global";
 
 export function App() {
   return (
     <>
       <Header />
-      <Body />
+      <Search />
       <Globalstyle />
     </>
   );

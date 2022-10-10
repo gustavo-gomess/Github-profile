@@ -13,7 +13,10 @@ export const Globalstyle = createGlobalStyle`
     }
 
     body {
-        background: var(--background);
+        background: var(--background); 
+        font-size: 18px;
+        color: rgb(51, 51, 51);
+        font-family: sans-serif;
     }
 
     html{
@@ -26,9 +29,14 @@ export const Globalstyle = createGlobalStyle`
         }
     }
 
-    body, input, button, h1{
+    body, input, button, h1 {
         font-family: 'Poppins', sans-serif ;
-        font-weight: 900;
+        font-weight: 700;
+    }
+
+    h4, P {
+        font-family: 'Poppins', sans-serif ;
+        font-weight: 500;
     }
 
     button {
