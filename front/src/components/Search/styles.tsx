@@ -47,7 +47,6 @@ export const Texts = styled.div`
   display: block;
 
   > img {
-    background-image: url(https://avatars.githubusercontent.com/u/1410106?v=4);
     height: 150px;
     width: 150px;
     background-repeat: no-repeat;
