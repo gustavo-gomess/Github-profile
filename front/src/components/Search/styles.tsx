@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Div = styled.div`
-  display: block;
+  display: flex;
 `;
 
 export const Main = styled.main`
@@ -62,6 +62,9 @@ export const Texts = styled.div`
     line-height: 30px;
     padding: 0px 10px;
     display: flex;
+    text-align: left;
+    justify-content: left;
+    align-items: left;
   }
 `;
 
@@ -73,5 +76,8 @@ export const Repos = styled.div`
     line-height: 30px;
     padding: 0px 10px;
     display: flex;
+    text-align: left;
+    justify-content: left;
+    align-items: left;
   }
 `;

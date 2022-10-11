@@ -54,30 +54,30 @@ const Search = () => {
   }
 
   return (
-    <Div>
-      <Main>
-        <InputContainer>
-          <input
-            type="text"
-            placeholder="Insira um nome de usuário"
-            value={searchInput}
-            onChange={(evt) => {
-              setSearchInput(evt.target.value);
-            }}
-          />
-          <button
-            onClick={() => {
-              setPage(1);
-              searchUsername(1);
-            }}
-          >
-            <p>Search</p>
-          </button>
-        </InputContainer>
-        <>
-          {users.map((user, i) => {
-            return (
-              <>
+    <Main>
+      <InputContainer>
+        <input
+          type="text"
+          placeholder="Insira um nome de usuário"
+          value={searchInput}
+          onChange={(evt) => {
+            setSearchInput(evt.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            setPage(1);
+            searchUsername(1);
+          }}
+        >
+          <p>Search</p>
+        </button>
+      </InputContainer>
+      <>
+        {users.map((user, i) => {
+          return (
+            <>
+              <Div>
                 <Img>
                   <img src={user.avatar} alt="" />
                 </Img>
@@ -93,12 +93,12 @@ const Search = () => {
                   <a href={user.url_repos}> {user.name_repos}</a>
                   <a href={user.url_repos}> {user.name_repos}</a>
                 </Repos>
-              </>
-            );
-          })}
-        </>
-      </Main>
-    </Div>
+              </Div>
+            </>
+          );
+        })}
+      </>
+    </Main>
   );
 };
 
