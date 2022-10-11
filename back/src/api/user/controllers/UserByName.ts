@@ -1,7 +1,9 @@
 import axios from "axios";
 import { NextFunction, Request, Response } from "express";
+import { api } from "../..";
 import { CustomError } from "../../../models/customError";
-import { findGitUser } from "../services/user.findGitUser";
+import { findGitUser } from "../services/UserbyFind";
+import { ApiReturn, ArrayReturn } from "./type";
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -9,31 +11,12 @@ function delay(ms: number) {
 
 const DELAY_VALUE_MS = 60000;
 
-interface ApiReturn {
-  items: [
-    {
-      avatar_url: string;
-      login: string;
-      followers_url: string;
-      repos_url: string;
-    }
-  ];
-}
-
-interface ArrayReturn {
-  avatar: string;
-  userName: string;
-  followersCount: number;
-  repositoriesCount: number;
-}
-
 async function searchUsersByName(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
-    //Utilizei a query pois em requisições GET, é o mais recomendado
     const { searchUserName, page } = req.query;
 
     if (!searchUserName) {
@@ -90,6 +73,12 @@ async function searchUsersByName(
         userName: item.login,
         followersCount: numberFollowers,
         repositoriesCount: numberRepos,
+        repos1: item.received_events_url,
+        repos2: item.received_events_url,
+        repos3: item.received_events_url,
+        repos4: item.received_events_url,
+        name_repos: item.received_events_url,
+        url_repos: item.received_events_url,
       });
     }
 

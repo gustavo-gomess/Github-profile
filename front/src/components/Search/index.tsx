@@ -1,13 +1,19 @@
 import React, { FormEvent, useState } from "react";
 import axios from "axios";
 
-import { InputContainer, Main, Texts, Body } from "./styles";
+import { InputContainer, Main, Texts, Img, Div, Repos } from "./styles";
 
 interface UserProps {
   avatar: string;
   userName: string;
   followersCount: number;
   repositoriesCount: number;
+  repos1: string;
+  repos2: string;
+  repos3: string;
+  repos4: string;
+  name_repos: string;
+  url_repos: string;
 }
 
 const AXIOS_URL = "http://localhost:8080api";
@@ -48,7 +54,7 @@ const Search = () => {
   }
 
   return (
-    <Body>
+    <Div>
       <Main>
         <InputContainer>
           <input
@@ -65,31 +71,34 @@ const Search = () => {
               searchUsername(1);
             }}
           >
-            <p>Buscar</p>
+            <p>Search</p>
           </button>
         </InputContainer>
         <>
           {users.map((user, i) => {
             return (
               <>
-                <Texts>
+                <Img>
                   <img src={user.avatar} alt="" />
-
-                  <p>Name: {user.userName}</p>
-                  <p>Username: {user.userName}</p>
-                  <p>Followers: {user.followersCount}</p>
-                  <p>Repositories count: {user.repositoriesCount}</p>
+                </Img>
+                <Texts>
                   <p>Name: {user.userName}</p>
                   <p>Username: {user.userName}</p>
                   <p>Followers: {user.followersCount}</p>
                   <p>Repositories count: {user.repositoriesCount}</p>
                 </Texts>
+                <Repos>
+                  <a href={user.url_repos}> {user.name_repos}</a>
+                  <a href={user.url_repos}> {user.name_repos}</a>
+                  <a href={user.url_repos}> {user.name_repos}</a>
+                  <a href={user.url_repos}> {user.name_repos}</a>
+                </Repos>
               </>
             );
           })}
         </>
       </Main>
-    </Body>
+    </Div>
   );
 };
 
