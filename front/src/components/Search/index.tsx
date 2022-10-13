@@ -83,10 +83,10 @@ const Search = () => {
                   <p>Repositories count: {user.repositoriesCount}</p>
                 </Texts>
                 <Repos>
+                  <p>Repositories :</p>
                   <a href={`https://github.com/${user}/${user.repos1}`}>
-                    {user.name}
+                    {user.repos1}
                   </a>
-                  <a href={user.repos1}> {user.repos1}</a>
                   <a href={user.repos1}> {user.repos1}</a>
                   <a href={user.repos1}> {user.repos1}</a>
                 </Repos>
