@@ -5,11 +5,11 @@ export interface ApiReturn {
       avatar_url: string;
       login: string;
       followers_url: string;
-      received_events_url: string;
-      received_events_url: string;
-      received_events_url: string;
-      received_events_url: string;
-      received_events_url: {
+      repos_url: string;
+      repos_url: string;
+      repos_url: string;
+      repos_url: string;
+      repos_url: {
         repo: {
           name: string;
           url: string;

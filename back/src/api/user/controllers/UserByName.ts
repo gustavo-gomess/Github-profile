@@ -1,8 +1,7 @@
 import axios from "axios";
 import { NextFunction, Request, Response } from "express";
-import { api } from "../..";
 import { CustomError } from "../../../models/customError";
-import { findGitUser } from "../services/UserbyFind";
+import { FindByFind } from "../services/UserByFind";
 import { ApiReturn, ArrayReturn } from "./type";
 
 function delay(ms: number) {
@@ -17,7 +16,7 @@ async function searchUsersByName(
   next: NextFunction
 ) {
   try {
-    const { searchUserName, page } = req.query;
+    const { searchUserName, page, url_repos, name } = req.query;
 
     if (!searchUserName) {
       res.status(400);
@@ -28,11 +27,17 @@ async function searchUsersByName(
       );
     }
 
+    var apirepo;
+    await FindByFind(searchUserName as string, page as string).then((res) => {
+      apirepo = res;
+    });
+
     var apiResult: ApiReturn;
-    await findGitUser(searchUserName as string, page as string)
+    await FindByFind(searchUserName as string, page as string)
       .then((res) => {
         apiResult = res.data;
       })
+
       .catch(async (err) => {
         if (err.response) {
           if (
@@ -40,7 +45,7 @@ async function searchUsersByName(
             err.response.data.message.startsWith("API rate limit exceeded")
           ) {
             await delay(DELAY_VALUE_MS);
-            await findGitUser(searchUserName as string, page as string).then(
+            await FindByFind(searchUserName as string, page as string).then(
               (res) => {
                 apiResult = res.data;
               }
@@ -73,12 +78,12 @@ async function searchUsersByName(
         userName: item.login,
         followersCount: numberFollowers,
         repositoriesCount: numberRepos,
-        repos1: item.received_events_url,
-        repos2: item.received_events_url,
-        repos3: item.received_events_url,
-        repos4: item.received_events_url,
-        name_repos: item.received_events_url,
-        url_repos: item.received_events_url,
+        repos1: item.repos_url,
+        repos2: item.repos_url,
+        repos3: item.repos_url,
+        repos4: item.repos_url,
+        name_repos: item.repos_url,
+        url_repos: item.repos_url,
       });
     }
 

@@ -24,16 +24,11 @@ const api = axios.create({
 const Search = () => {
   const [users, setUsers] = useState<UserProps[]>([]);
   const [searchInput, setSearchInput] = useState<string>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [reposModalOpen, setReposModalOpen] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
 
   async function searchUsername(page: number) {
     if (!searchInput) {
       return alert("Digite algo antes de buscar!");
     }
-    setLoading(true);
 
     await api
       .get(
@@ -45,11 +40,9 @@ const Search = () => {
         if (res.data.length < 1) {
           alert("Sua busca não trouxe nenhum resultado");
         }
-        setLoading(false);
       })
       .catch((err) => {
         alert("Houve um problema na busca, tente novamente");
-        setLoading(false);
       });
   }
 
@@ -66,7 +59,6 @@ const Search = () => {
         />
         <button
           onClick={() => {
-            setPage(1);
             searchUsername(1);
           }}
         >
@@ -88,7 +80,7 @@ const Search = () => {
                   <p>Repositories count: {user.repositoriesCount}</p>
                 </Texts>
                 <Repos>
-                  <a href={user.url_repos}> {user.name_repos}</a>
+                  <a href={user.url_repos}> {user.repos1}</a>
                   <a href={user.url_repos}> {user.name_repos}</a>
                   <a href={user.url_repos}> {user.name_repos}</a>
                   <a href={user.url_repos}> {user.name_repos}</a>
