@@ -5,15 +5,11 @@ import { InputContainer, Main, Texts, Img, Div, Repos } from "./styles";
 
 interface UserProps {
   avatar: string;
+  name: string;
   userName: string;
   followersCount: number;
   repositoriesCount: number;
   repos1: string;
-  repos2: string;
-  repos3: string;
-  repos4: string;
-  name_repos: string;
-  url_repos: string;
 }
 
 const AXIOS_URL = "http://localhost:8080api";
@@ -32,7 +28,7 @@ const Search = () => {
 
     await api
       .get(
-        `http://localhost:8080/api/user/search?searchUserName=${searchInput}&page=${page}`
+        `http://localhost:8080/api/user/search?searchUserName=${searchInput}`
       )
       .then((res) => {
         console.log(res.data);
@@ -44,6 +40,12 @@ const Search = () => {
       .catch((err) => {
         alert("Houve um problema na busca, tente novamente");
       });
+  }
+
+  async function searchRepo(page: number) {
+    await api.get(
+      `http://localhost:8080/user/searchUserName=${searchInput}/repos`
+    );
   }
 
   return (
@@ -60,6 +62,7 @@ const Search = () => {
         <button
           onClick={() => {
             searchUsername(1);
+            searchRepo(1);
           }}
         >
           <p>Search</p>
@@ -80,10 +83,12 @@ const Search = () => {
                   <p>Repositories count: {user.repositoriesCount}</p>
                 </Texts>
                 <Repos>
-                  <a href={user.url_repos}> {user.repos1}</a>
-                  <a href={user.url_repos}> {user.name_repos}</a>
-                  <a href={user.url_repos}> {user.name_repos}</a>
-                  <a href={user.url_repos}> {user.name_repos}</a>
+                  <a href={`https://github.com/${user}/${user.repos1}`}>
+                    {user.name}
+                  </a>
+                  <a href={user.repos1}> {user.repos1}</a>
+                  <a href={user.repos1}> {user.repos1}</a>
+                  <a href={user.repos1}> {user.repos1}</a>
                 </Repos>
               </Div>
             </>
